@@ -1,0 +1,38 @@
+---
+title: uidahodigital archive
+layout: page
+---
+
+<h2 class="page-title">Browse:</h2>
+<div id="archiveList" class="archive-list">
+
+{% assign items = site.html_pages | where: "layout","post" | sort: "date" %}
+<div class="browse">
+    <input class="search" placeholder=" Search" type="text" aria-label="Search posts">
+    <button class="buttons sort" data-sort="date">date</button>
+    <button class="buttons sort" data-sort="tags">tags</button>
+  </div>
+
+  <div class="listjs">
+    {% for post in items reversed %}
+    <div class="archive-list-post">
+      <a href="{{ post.url | absolute_url }}">  
+      <span class="date archive-list-post-date">
+        {{ post.date }}
+      </span> | 
+      <span class="tags">{{ post.tags }}</span>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+<!-- add list.js http://www.listjs.com/ @javve -->
+<script src="{{ '/assets/list.min.js' | absolute_url }}"></script>
+<script> 
+    var options = {
+        valueNames: [ 'date', 'tags' ],
+        listClass: 'listjs'
+    };
+    var userList = new List('archiveList', options);
+</script>

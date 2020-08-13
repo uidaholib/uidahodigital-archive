@@ -1,0 +1,14 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+$oc-white: #ffffff;
+$oc-gray-7:  #495057;
+$oc-gray-8: #343a40;
+$oc-gray-9: #212529;
+$base-color: $oc-gray-9;
+$background-over-color: #ccccff;
+$base-lighten-color: $oc-gray-7;
+$code-background-color: #e1e6ea; 
+
+@import "minima", "custom";

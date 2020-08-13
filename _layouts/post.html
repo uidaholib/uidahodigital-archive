@@ -1,0 +1,62 @@
+---
+layout: default
+---
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.date | escape }}</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {{ page.tags }}
+      </time>
+      {%- if page.author -%}
+        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
+      {%- endif -%}</p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    {{ page.text }}
+  </div>
+
+</article>
+
+{% assign itemset = site.data.uidahodigital_tumblr_posts | map: 'post_id' | compact %}
+{% assign last = itemset | size | minus: 1 %}
+{% unless page.index_number == 0 %}
+{% assign back = page.index_number | minus: 1 %}
+{% else %}
+{% assign back = last %}
+{%- endunless -%}
+{% unless page.index_number == last %}
+{% assign forward = page.index_number | plus: 1 %}
+{% else %}
+{% assign forward = 0 %}
+{%- endunless -%}
+{%- assign back_url = '/archive/' | append: itemset[back] | append: '.html' | relative_url -%}
+{%- assign forward_url = '/archive/' | append: itemset[forward] | append: '.html' | relative_url -%}
+<div class="post-browse">
+    <a class="buttons" href="{{ back_url }}" id="prev-page-button">&laquo; Previous</a> 
+    <a class="buttons" href="{{ '/index.html' | relative_url }}" > Archive</a> 
+    <a class="buttons" href="{{ forward_url }}" id="next-page-button">Next &raquo;</a>
+</div>
+<script>
+function leftArrowPressed() {
+   location.href = document.getElementById("prev-page-button").href;
+}
+
+function rightArrowPressed() {
+    location.href = document.getElementById("next-page-button").href;
+}
+
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    switch (evt.keyCode) {
+        case 37:
+            leftArrowPressed();
+            break;
+        case 39:
+            rightArrowPressed();
+            break;
+    }
+};
+</script>

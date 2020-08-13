@@ -1,0 +1,16 @@
+# Welcome to Jekyll!
+
+title: uidahodigital archive
+description: An archive of the tumblr blog uidahodigital
+baseurl: "/uidahodigital-archive" # the subpath of your site, e.g. /blog
+url: "https://uidaholib.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+
+repo: https://github.com/uidaholib/uidahodigital-archive
+
+# page gen
+page_gen:
+  - data: 'uidahodigital_tumblr_posts'
+    template: 'items'
+    name: 'post_id'
+    dir: 'archive'
+    extension: 'html' 
